@@ -2,8 +2,8 @@
 #include <ESP8266WebServer.h>
 
 // Replace with your network credentials
-const char* ssid = "tanginaMoSSID";
-const char* password = "tanginamoPASSWORD";
+const char* ssid = "EnterYourWifiSSID";
+const char* password = "EnterWifiPassword";
 
 ESP8266WebServer server(80);
 const int ledPin1 = 4;  // Pin for the first LED (GPIO 2)
