@@ -53,34 +53,85 @@ void handleGetData() {
   String response2;
   String response3;
 
-  if (query1 == "1") {
-    digitalWrite(ledPin1, HIGH);
-    response1 = "LED1 turned ON";
-  }
-  else {
+  if (query1 == "0" && query2 == "0" && query3 == "0") {
     digitalWrite(ledPin1, LOW);
-    response1 = "LED1 turned OFF";
-  }
-  
-  if (query2 == "1") {
-    digitalWrite(ledPin2, HIGH);
-    response2 = "LED2 turned ON";
-  }
-  else {
     digitalWrite(ledPin2, LOW);
-    response2 = "LED2 turned OFF";
-  }
-  
-  if (query3 == "1") {
-    digitalWrite(ledPin3, HIGH);
-    response3 = "LED3 turned ON";
-  } else {
     digitalWrite(ledPin3, LOW);
+    response1 = "LED1 turned OFF";
+    response2 = "LED2 turned OFF";
     response3 = "LED3 turned OFF";
   }
 
+  if (query1 == "1" && query2 == "0" && query3 == "0") {
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, LOW);
+    response1 = "LED1 turned ON";
+    response2 = "LED2 turned OFF";
+    response3 = "LED3 turned OFF";
+  }
+  
+  if (query1 == "0" && query2 == "1" && query3 == "0") {
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, LOW);
+    response1 = "LED1 turned OFF";
+    response2 = "LED2 turned ON";
+    response3 = "LED3 turned OFF";
+  }
+  
+  if (query1 == "0" && query2 == "0" && query3 == "1") {
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, HIGH);
+    response1 = "LED1 turned OFF";
+    response2 = "LED2 turned OFF";
+    response3 = "LED3 turned ON";
+  }
+
+  if (query1 == "1" && query2 == "1" && query3 == "0") {
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, LOW);
+    response1 = "LED1 turned ON";
+    response2 = "LED2 turned ON";
+    response3 = "LED3 turned OFF";
+  }
+
+  if (query1 == "1" && query2 == "0" && query3 == "1") {
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, HIGH);
+    response1 = "LED1 turned ON";
+    response2 = "LED2 turned OFF";
+    response3 = "LED3 turned ON";
+  }
+
+  if (query1 == "0" && query2 == "1" && query3 == "1") {
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, HIGH);
+    response1 = "LED1 turned OFF";
+    response2 = "LED2 turned ON";
+    response3 = "LED3 turned ON";
+  }
+
+  if (query1 == "1" && query2 == "1" && query3 == "1") {
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, HIGH);
+    response1 = "LED1 turned ON";
+    response2 = "LED2 turned ON";
+    response3 = "LED3 turned ON";
+  }
+
+  Serial.println("LED1 State: " + query1);
+  Serial.println("LED2 State: " + query2);
+  Serial.println("LED3 State: " + query3 + "\n");
+
   // Send the response to the client
   String response = response1 + "\n" + response2 + "\n" + response3;
+  Serial.println(response);
   server.send(200, "text/plain", response);
 
 }
